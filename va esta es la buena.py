@@ -113,11 +113,16 @@ class MyGame(arcade.Window):
             coin.remove_from_sprite_lists()
             self.score += 1
 
-        self.meteor_sprite.center_x += 5
+
+        self.meteor_sprite.center_x += 2.5
         if self.meteor_sprite.right > SCREEN_WIDTH or self.meteor_sprite.left < 0:
             self.meteor_sprite.change_x *= -1
+            print('hola')
         if self.meteor_sprite.top > SCREEN_HEIGHT or self.meteor_sprite.bottom < 0:
             self.meteor_sprite.change_y *= -1
+            print('Funciona')
+
+        self.meteor_sprite.update()
 
         if arcade.check_for_collision(self.player_sprite, self.meteor_sprite):
             over_view = GameOver()
