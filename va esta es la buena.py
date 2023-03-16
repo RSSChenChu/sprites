@@ -7,14 +7,13 @@ import os
 # --- Constants ---
 SPRITE_SCALING_PLAYER = 0.34
 SPRITE_SCALING_COIN = 0.2
-SPRITE_SCALING_METEOR = 0.7
+SPRITE_SCALING_METEOR = 1
 COIN_COUNT = 50
-METEOR_COUNT = 20
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
-class Over(arcade.View):
+class GameOver(arcade.View):
     def on_show(self):
         arcade.set_background_color(arcade.color.CYAN)
 
@@ -76,7 +75,7 @@ class MyGame(arcade.Window):
             self.coin_list.append(coin)
 
         self.meteor_sprite = arcade.Sprite(":resources:/images/space_shooter/meteorGrey_big4.png",
-                                               SPRITE_SCALING_COIN)
+                                               SPRITE_SCALING_METEOR)
         self.meteor_sprite.center_x = random.randrange(SCREEN_WIDTH)
         self.meteor_sprite.center_y = random.randrange(SCREEN_HEIGHT)
         self.coin_list.append(self.meteor_sprite)
@@ -115,13 +114,14 @@ class MyGame(arcade.Window):
             self.score += 1
 
         self.meteor_sprite.center_x += 5
-        if self.meteor_sprite.right >= SCREEN_WIDTH or self.meteor_sprite.left <= 0:
+        if self.meteor_sprite.right > SCREEN_WIDTH or self.meteor_sprite.left < 0:
             self.meteor_sprite.change_x *= -1
-        if self.meteor_sprite.top >= SCREEN_HEIGHT or self.meteor_sprite.bottom <= 0:
+        if self.meteor_sprite.top > SCREEN_HEIGHT or self.meteor_sprite.bottom < 0:
             self.meteor_sprite.change_y *= -1
 
         if arcade.check_for_collision(self.player_sprite, self.meteor_sprite):
-            self.show_view(over_view)
+            over_view = GameOver()
+            self.window.show_view(over_view)
 
 
 def main():
