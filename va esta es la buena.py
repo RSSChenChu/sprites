@@ -2,6 +2,7 @@
 
 import random
 import arcade
+import os
 
 # --- Constants ---
 SPRITE_SCALING_PLAYER = 0.34
@@ -13,7 +14,7 @@ METEOR_COUNT = 20
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
-class GameOver(arcade.View):
+class Over(arcade.View):
     def on_show(self):
         arcade.set_background_color(arcade.color.CYAN)
 
@@ -80,11 +81,6 @@ class MyGame(arcade.Window):
         self.meteor_sprite.center_y = random.randrange(SCREEN_HEIGHT)
         self.coin_list.append(self.meteor_sprite)
 
-    def GameOver(self):
-        arcade.start_render()
-        arcade.draw_text("GAME OVER", WIDTH / 2, HEIGHT / 2,
-                         arcade.color.BLACK, font_size=75, anchor_x="center")
-
     def on_draw(self):
         """ Draw everything """
         arcade.start_render()
@@ -125,7 +121,7 @@ class MyGame(arcade.Window):
             self.meteor_sprite.change_y *= -1
 
         if arcade.check_for_collision(self.player_sprite, self.meteor_sprite):
-            self.window.show_view
+            self.show_view(over_view)
 
 
 def main():
