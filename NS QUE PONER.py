@@ -7,6 +7,7 @@ import arcade
 SPRITE_SCALING_PLAYER = 0.34
 SPRITE_SCALING_COIN = 0.2
 COIN_COUNT = 50
+BAD_COUNT = 20
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -23,6 +24,7 @@ class MyGame(arcade.Window):
         # Variables that will hold sprite lists
         self.player_list = None
         self.coin_list = None
+        self.bad_List = None
 
         # Set up the player info
         self.player_sprite = None
@@ -39,6 +41,7 @@ class MyGame(arcade.Window):
         # Sprite lists
         self.player_list = arcade.SpriteList()
         self.coin_list = arcade.SpriteList()
+        self.bad_List = arcade.SpriteList()
 
         # Score
         self.score = 0
@@ -52,7 +55,6 @@ class MyGame(arcade.Window):
 
         # Create the coins
         for i in range(COIN_COUNT):
-
             # Create the coin instance
             # Coin image from kenney.nl
             coin = arcade.Sprite(":resources:images/items/star.png", SPRITE_SCALING_COIN)
