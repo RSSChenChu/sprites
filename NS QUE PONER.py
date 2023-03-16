@@ -24,7 +24,6 @@ class MyGame(arcade.Window):
         # Variables that will hold sprite lists
         self.player_list = None
         self.coin_list = None
-        self.bad_List = None
 
         # Set up the player info
         self.player_sprite = None
@@ -33,7 +32,7 @@ class MyGame(arcade.Window):
         # Don't show the mouse cursor
         self.set_mouse_visible(False)
 
-        arcade.set_background_color(arcade.color.AMAZON)
+        arcade.set_background_color(arcade.color.SPANISH_SKY_BLUE)
 
     def setup(self):
         """ Set up the game and initialize the variables. """
@@ -41,7 +40,6 @@ class MyGame(arcade.Window):
         # Sprite lists
         self.player_list = arcade.SpriteList()
         self.coin_list = arcade.SpriteList()
-        self.bad_List = arcade.SpriteList()
 
         # Score
         self.score = 0
